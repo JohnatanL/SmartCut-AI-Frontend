@@ -1,0 +1,21 @@
+# Archivos de entorno y credenciales
+.env
+.env.*
+*.env
+
+# Carpetas de configuración del editor y herramientas
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs y temporales
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+tmp/
+temp/

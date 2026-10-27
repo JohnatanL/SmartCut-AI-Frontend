@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SmartCut AI: administración de usuarios, servicios y productos de barbería.">
+  <title>SmartCut AI | Gestión</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Inicio de sesión y registro -->
+  <main id="auth-screen" class="auth-screen">
+    <section class="auth-brand-panel">
+      <div class="brand-lockup">
+        <span class="material-icons brand-mark" aria-hidden="true">content_cut</span>
+        <span>SmartCut <strong>AI</strong></span>
+      </div>
+      <div class="auth-pitch">
+        <span class="eyebrow">PLATAFORMA DE GESTIÓN</span>
+        <h1>Tu barbería, organizada en un solo lugar.</h1>
+        <p>Administra el catálogo de servicios, el inventario y los usuarios.</p>
+      </div>
+      <p class="auth-footer">Proyecto académico · SENA</p>
+    </section>
+
+    <section class="auth-form-panel">
+      <form id="login-form" class="auth-card">
+        <div class="mobile-brand brand-lockup">
+          <span class="material-icons brand-mark" aria-hidden="true">content_cut</span>
+          <span>SmartCut <strong>AI</strong></span>
+        </div>
+        <span class="eyebrow">TE DAMOS LA BIENVENIDA</span>
+        <h2>Iniciar sesión</h2>
+        <p class="muted-text">Ingresa con una cuenta registrada.</p>
+        <div id="login-error" class="form-message error-message hidden" role="alert"></div>
+        <label class="field-label" for="login-email">Correo electrónico</label>
+        <input id="login-email" name="email" class="form-input" type="email" autocomplete="username" placeholder="nombre@correo.com" required>
+        <label class="field-label" for="login-password">Contraseña</label>
+        <input id="login-password" name="password" class="form-input" type="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+        <button id="login-submit" class="primary-button full-button" type="submit"><span>Ingresar</span><span class="material-icons">arrow_forward</span></button>
+        <div class="auth-divider"><span>Regístrate para obtener acceso completo.</span></div>
+        <button id="show-register" class="secondary-button full-button" type="button">Crear una cuenta</button>
+      </form>
+
+      <form id="register-form" class="auth-card hidden">
+        <div class="mobile-brand brand-lockup">
+          <span class="material-icons brand-mark" aria-hidden="true">content_cut</span>
+          <span>SmartCut <strong>AI</strong></span>
+        </div>
+        <span class="eyebrow">NUEVA CUENTA</span>
+        <h2>Crear usuario</h2>
+        <p class="muted-text">Completa el formulario para crear una cuenta.</p>
+        <div id="register-error" class="form-message error-message hidden" role="alert"></div>
+        <label class="field-label" for="register-name">Nombre completo</label>
+        <input id="register-name" name="nombre" class="form-input" type="text" autocomplete="name" required maxlength="120">
+        <label class="field-label" for="register-email">Correo electrónico</label>
+        <input id="register-email" name="email" class="form-input" type="email" autocomplete="email" required>
+        <label class="field-label" for="register-password">Contraseña</label>
+        <input id="register-password" name="password" class="form-input" type="password" autocomplete="new-password" minlength="6" required>
+        <button id="register-submit" class="primary-button full-button" type="submit"><span>Crear cuenta</span><span class="material-icons">person_add</span></button>
+        <button id="show-login" class="text-button full-button" type="button"><span class="material-icons">arrow_back</span> Volver al inicio de sesión</button>
+      </form>
+      <p class="auth-credit">SmartCut AI · Frontend</p>
+    </section>
+  </main>
+
+  <!-- Aplicación principal -->
+  <div id="app-screen" class="app-shell hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand brand-lockup">
+        <span class="material-icons brand-mark" aria-hidden="true">content_cut</span>
+        <span>SmartCut <strong>AI</strong></span>
+      </div>
+      <div class="sidebar-label">MENÚ PRINCIPAL</div>
+      <nav class="sidebar-nav" aria-label="Navegación principal">
+        <button class="nav-link active" data-page="dashboard"><span class="material-icons">space_dashboard</span><span>Resumen</span></button>
+        <button class="nav-link" data-page="users"><span class="material-icons">group</span><span>Usuarios</span></button>
+        <button class="nav-link" data-page="services"><span class="material-icons">content_cut</span><span>Servicios</span></button>
+        <button class="nav-link" data-page="products"><span class="material-icons">inventory_2</span><span>Productos</span></button>
+        <div class="sidebar-label sidebar-label-spaced">PROTOTIPO VISUAL</div>
+        <button class="nav-link" data-page="simulator"><span class="material-icons">auto_awesome</span><span>Simulador IA</span><span class="nav-tag">Demo</span></button>
+        <button class="nav-link" data-page="appointments"><span class="material-icons">calendar_month</span><span>Agendamiento</span><span class="nav-tag">Demo</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="api-status"><span id="api-status-dot" class="status-dot"></span><div><strong id="api-status-text">API configurada</strong><small>localhost:8000</small></div></div>
+        <button id="logout-button" class="logout-link"><span class="material-icons">logout</span><span>Cerrar sesión</span></button>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <button id="mobile-menu-button" class="icon-button mobile-menu-button" type="button" aria-label="Abrir menú"><span class="material-icons">menu</span></button>
+        <div class="topbar-heading"><span class="eyebrow">SMARTCUT AI / ADMINISTRACIÓN</span><h1 id="page-title">Resumen</h1></div>
+        <div class="topbar-user"><div id="user-avatar" class="user-avatar">SC</div><div class="topbar-user-copy"><strong id="current-user-name">Usuario</strong><small id="current-user-email">Sesión activa</small></div></div>
+      </header>
+      <main id="page-content" class="page-content" tabindex="-1"></main>
+      <footer class="main-footer"><span>SmartCut AI · Evidencia SENA</span><span>By Johnatan David Lozano Suarez</span></footer>
+    </div>
+  </div>
+
+  <!-- Diálogo reutilizable para crear y editar registros -->
+  <dialog id="record-dialog" class="record-dialog">
+    <form id="record-form" method="dialog" class="dialog-form">
+      <div class="dialog-heading"><div><span id="dialog-eyebrow" class="eyebrow">REGISTRO</span><h2 id="dialog-title">Crear registro</h2></div><button id="dialog-close" class="icon-button" type="button" aria-label="Cerrar"><span class="material-icons">close</span></button></div>
+      <p id="dialog-description" class="muted-text">Completa los campos del formulario.</p>
+      <div id="dialog-fields" class="dialog-fields"></div>
+      <div id="dialog-error" class="form-message error-message hidden" role="alert"></div>
+      <div class="dialog-actions"><button id="dialog-cancel" class="secondary-button" type="button">Cancelar</button><button id="dialog-save" class="primary-button" type="submit"><span>Guardar cambios</span><span class="material-icons">save</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" class="confirm-dialog">
+    <div class="confirm-content"><div class="confirm-icon"><span class="material-icons">delete_outline</span></div><h2>Eliminar registro</h2><p id="confirm-message">¿Confirmas que deseas eliminar este registro? Esta acción no se puede deshacer.</p><div class="dialog-actions"><button id="confirm-cancel" class="secondary-button" type="button">Cancelar</button><button id="confirm-delete" class="danger-button" type="button">Sí, eliminar</button></div></div>
+  </dialog>
+</body>
+</html>
