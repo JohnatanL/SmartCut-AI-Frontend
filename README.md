@@ -258,6 +258,10 @@ Comprueba la configuración de persistencia de SQLite y los volúmenes de Docker
 
 ---
 
+## Repositorios relacionados
+
+- **Backend:** [SmartCut AI Backend](https://github.com/JohnatanL/SmartCut-AI-Backend)
+
 **Proyecto académico:** SmartCut AI  
 **Evidencia:** GA4-220501096-AA1-EV02 — Aplicación web funcional  
 **Propósito:** demostrar la integración de un frontend web con una API REST y la gestión de datos mediante operaciones CRUD.
