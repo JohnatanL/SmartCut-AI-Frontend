@@ -97,18 +97,39 @@ SmartCut_AI_Frontend/
 └── README.md                 # Documentación del frontend
 ```
 
-## Arquitectura del frontend
+
+## Arquitectura del sistema
+
+SmartCut AI utiliza una arquitectura cliente-servidor que separa la interfaz web, la lógica de negocio y la persistencia de datos. El frontend está desarrollado con HTML5, CSS3 y JavaScript (ES6+), y se comunica mediante solicitudes HTTP con una API REST construida con FastAPI. La información transaccional se almacena en SQLite, gestionada por el backend.
+
+### 1. Diagrama general del sistema
+
+El siguiente diagrama presenta la arquitectura general de SmartCut AI y la comunicación entre sus componentes principales.
+
+![Diagrama general de la arquitectura de SmartCut AI](docs/images/arquitectura-general.png)
+
+### 2. Flujo de autenticación y operaciones CRUD
+
+Este diagrama detalla el flujo de autenticación y la interacción entre el frontend, los endpoints de FastAPI y la base de datos durante las operaciones de creación, consulta, actualización y eliminación de registros.
+
+![Diagrama de autenticación y operaciones CRUD](docs/images/arquitectura-autenticacion-crud.png)
+
+### 3. Organización interna del frontend
 
 La lógica de `js/app.js` está organizada mediante clases para separar responsabilidades:
 
-- **`ApiClient`:** concentra las solicitudes HTTP, convierte los cuerpos JSON, agrega el token Bearer cuando existe y traduce respuestas HTTP fallidas a errores manejables.
+- **`ApiClient`:** concentra las solicitudes HTTP, convierte los cuerpos JSON, agrega el token Bearer cuando existe y gestiona las respuestas de error.
 - **`AuthController`:** coordina el inicio de sesión, el registro, la restauración de la sesión y el cierre de sesión.
 - **`UIController`:** administra la navegación, el contenido de cada pantalla, los formularios modales, las confirmaciones y los mensajes de interfaz.
 - **`CrudModule`:** implementa el comportamiento reutilizable de consulta, búsqueda, creación, edición y eliminación de cada entidad.
 - **`ToastController`:** muestra notificaciones temporales de éxito o error.
 - **`ApiError`:** representa errores de la API, conservando el estado HTTP y los detalles disponibles.
 
-Los módulos de usuarios, servicios y productos se configuran con sus rutas, campos y columnas. De esta forma comparten la lógica CRUD sin repetir toda la implementación para cada entidad.
+Los módulos de usuarios, servicios y productos comparten la lógica CRUD mediante configuraciones específicas para cada entidad.
+
+### 4. Manual técnico y de usuario
+
+Para consultar los procedimientos de instalación, configuración, uso de los módulos y solución de problemas, revisa el [Manual técnico y de usuario de SmartCut AI](docs/Manual_Tecnico_Usuario_SmartCut_AI.pdf).
 
 ## Comunicación con la API
 
